@@ -1,0 +1,70 @@
+spring:
+  profiles:
+    active:
+    - dev
+
+
+---
+server:
+  port: 8001
+
+spring:
+  profiles: dev
+  application:
+    name: microservicecloud-config-dept-client-develop
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://192.168.1.8:3306/clouddb01
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: 2172926
+    dbcp2:
+      min-idle: 5
+      initial-size: 5
+      max-total: 5
+      max-wait-millis: 200
+
+mybatis:
+  config-location: classpath:mybatis/mybatis-config.xml
+  type-aliases-package: com.atbytedance.springcloud.entities
+  mapper-locations: classpath:mybatis/mapper/**/*.xml
+
+eureka:
+  instance:
+    instance-id: com.atbytedance-dept8001-dev
+    prefer-ip-address: true
+  client: 
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka/
+---
+server:
+  port: 8001
+
+spring:
+  profiles: dev
+  application:
+    name: microservicecloud-config-dept-client-test
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://192.168.1.8:3306/clouddb02
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: 2172926
+    dbcp2:
+      min-idle: 5
+      initial-size: 5
+      max-total: 5
+      max-wait-millis: 200
+
+mybatis:
+  config-location: classpath:mybatis/mybatis-config.xml
+  type-aliases-package: com.atbytedance.springcloud.entities
+  mapper-locations: classpath:mybatis/mapper/**/*.xml
+
+eureka:
+  instance:
+    instance-id: com.atbytedance-dept8001-test
+    prefer-ip-address: true
+  client: 
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka/
